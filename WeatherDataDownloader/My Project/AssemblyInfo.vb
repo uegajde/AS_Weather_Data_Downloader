@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' 檢閱組件屬性的值
 
-<Assembly: AssemblyTitle("Developed by Lin Zhe-Hui")> 
-<Assembly: AssemblyDescription("Developed by Lin Zhe-Hui")> 
+<Assembly: AssemblyTitle("Weather Data Downloader Developed by Lin Zhe-Hui")> 
+<Assembly: AssemblyDescription("Weather Data Downloader Developed by Lin Zhe-Hui")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Weather Data Downloader")> 
-<Assembly: AssemblyCopyright("What's Copyright ? It's eatable?")> 
+<Assembly: AssemblyCopyright("Lin recently found Copyright is delicious ,so he reserved it!")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' 指定為預設值: 
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.1.0.1")> 
-<Assembly: AssemblyFileVersion("1.1.0.1")> 
+<Assembly: AssemblyVersion("1.1.1.0")> 
+<Assembly: AssemblyFileVersion("1.1.1.0")> 

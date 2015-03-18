@@ -9,21 +9,23 @@
 
 Imports System.Threading
 Imports System.Threading.Thread
+Imports WeatherDataDownloader.RepeatFileRemover
 
 Public Class Main
     Dim RecordNum As Integer
     Dim Time As String
     Dim TimeForName As String
-    Dim DoenloadThread As New System.Threading.Thread(AddressOf Download)
+    Dim DownloadThread As New System.Threading.Thread(AddressOf Download)
     Dim D As Integer
-    Dim DN(9) As Integer
-    Dim DS(9) As Integer
+    Dim DN(11) As Integer
+    Dim DS(11) As Integer
     ''______________________________________________________________________
+    Dim FileName As String
     Dim TempString As String
     Dim DisplayUI As Boolean
-    Dim ErrorLog(9) As Boolean
-    Dim Enable(9) As Boolean
-    Dim Period(9) As Integer
+    Dim ErrorLog(11) As Boolean
+    Dim Enable(11) As Boolean
+    Dim Period(11) As Integer
     Dim Radar_density As Integer
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -32,12 +34,13 @@ Public Class Main
         RecordNum = FreeFile()
         FileOpen(RecordNum, Application.StartupPath + "\Record.txt", OpenMode.Append)
         PrintLine(RecordNum, DateString + "_" + TimeString + "_" + Time + "_" + "Downloading Task is Starting.")
+        FileClose(RecordNum)
 
         'Default
         DisplayUI = False
-        For i = 1 To 8
-            DS(i) = 0
-            DN(i) = 0
+        For i = 1 To 10
+            DS(i) = 0 'D state
+            DN(i) = 0 'D downloaded file number
             Enable(i) = True
             ErrorLog(i) = False
         Next
@@ -48,6 +51,8 @@ Public Class Main
         Period(6) = 18
         Period(7) = 18
         Period(8) = 18
+        Period(9) = 18
+        Period(10) = 18
         Radar_density = 30
 
         'Read config.txt
@@ -55,13 +60,15 @@ Public Class Main
 
         'Download
         If DisplayUI = True Then
-            DoenloadThread.Start()
+            DownloadThread.Start()
         Else
             Call Download()
         End If
     End Sub
 
     Private Sub Done()
+        RecordNum = FreeFile()
+        FileOpen(RecordNum, Application.StartupPath + "\Record.txt", OpenMode.Append)
         PrintLine(RecordNum, DateString + "_" + TimeString + "_" + Time + "_" + "Downloading Task is Done.")
         PrintLine(RecordNum, "________________________________________________________")
         FileClose(RecordNum)
@@ -156,14 +163,36 @@ Public Class Main
         End If
         If DS(8) = 1 Then
             Me.D8.BackColor = Color.Yellow
-            Me.D8.Text = "流線圖 (下載中)"
+            Me.D8.Text = "850hpa風速+流線圖 (下載中)"
         ElseIf DS(8) = 2 Then
             Me.D8.BackColor = Color.LightGreen
-            Me.D8.Text = "流線圖 : 下載了" + DN(8).ToString + "個檔案 (已完成)"
+            Me.D8.Text = "850hpa風速+流線圖 : 下載了" + DN(8).ToString + "個檔案 (已完成)"
         ElseIf DS(8) = 0 Then
-            Me.D8.Text = "流線圖 (等待中)"
+            Me.D8.Text = "850hpa風速+流線圖 (等待中)"
         ElseIf DS(8) = 3 Then
-            Me.D8.Text = "流線圖 (取消)"
+            Me.D8.Text = "850hpa風速+流線圖 (取消)"
+        End If
+        If DS(9) = 1 Then
+            Me.D9.BackColor = Color.Yellow
+            Me.D9.Text = "850hpa相對溼度+流線圖 (下載中)"
+        ElseIf DS(9) = 2 Then
+            Me.D9.BackColor = Color.LightGreen
+            Me.D9.Text = "850hpa相對溼度+流線圖 : 下載了" + DN(9).ToString + "個檔案 (已完成)"
+        ElseIf DS(9) = 0 Then
+            Me.D9.Text = "850hpa相對溼度+流線圖 (等待中)"
+        ElseIf DS(9) = 3 Then
+            Me.D9.Text = "850hpa相對溼度+流線圖 (取消)"
+        End If
+        If DS(10) = 1 Then
+            Me.D10.BackColor = Color.Yellow
+            Me.D10.Text = "日本氣象廳衛星雲圖(水氣頻道) (下載中)"
+        ElseIf DS(10) = 2 Then
+            Me.D10.BackColor = Color.LightGreen
+            Me.D10.Text = "日本氣象廳衛星雲圖(水氣頻道) : 下載了" + DN(10).ToString + "個檔案 (已完成)"
+        ElseIf DS(10) = 0 Then
+            Me.D10.Text = "日本氣象廳衛星雲圖(水氣頻道) (等待中)"
+        ElseIf DS(10) = 3 Then
+            Me.D10.Text = "日本氣象廳衛星雲圖(水氣頻道) (取消)"
         End If
 
     End Sub

@@ -30,6 +30,8 @@ Partial Class Main
         Me.D6 = New System.Windows.Forms.Label()
         Me.D7 = New System.Windows.Forms.Label()
         Me.D8 = New System.Windows.Forms.Label()
+        Me.D9 = New System.Windows.Forms.Label()
+        Me.D10 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'D1
@@ -108,15 +110,37 @@ Partial Class Main
         Me.D8.Font = New System.Drawing.Font("新細明體", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.D8.Location = New System.Drawing.Point(12, 100)
         Me.D8.Name = "D8"
-        Me.D8.Size = New System.Drawing.Size(96, 13)
+        Me.D8.Size = New System.Drawing.Size(164, 13)
         Me.D8.TabIndex = 12
-        Me.D8.Text = "流線圖 (等待中)"
+        Me.D8.Text = "850hpa風速+流線圖 (等待中)"
         '
-        'Form1
+        'D9
+        '
+        Me.D9.AutoSize = True
+        Me.D9.Font = New System.Drawing.Font("新細明體", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.D9.Location = New System.Drawing.Point(12, 113)
+        Me.D9.Name = "D9"
+        Me.D9.Size = New System.Drawing.Size(190, 13)
+        Me.D9.TabIndex = 14
+        Me.D9.Text = "850hpa相對溼度+流線圖 (等待中)"
+        '
+        'D10
+        '
+        Me.D10.AutoSize = True
+        Me.D10.Font = New System.Drawing.Font("新細明體", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.D10.Location = New System.Drawing.Point(12, 126)
+        Me.D10.Name = "D10"
+        Me.D10.Size = New System.Drawing.Size(234, 13)
+        Me.D10.TabIndex = 15
+        Me.D10.Text = "日本氣象廳衛星雲圖(水氣頻道) (等待中)"
+        '
+        'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(319, 127)
+        Me.ClientSize = New System.Drawing.Size(410, 150)
+        Me.Controls.Add(Me.D10)
+        Me.Controls.Add(Me.D9)
         Me.Controls.Add(Me.D8)
         Me.Controls.Add(Me.D7)
         Me.Controls.Add(Me.D6)
@@ -125,7 +149,7 @@ Partial Class Main
         Me.Controls.Add(Me.D3)
         Me.Controls.Add(Me.D2)
         Me.Controls.Add(Me.D1)
-        Me.Name = "Form1"
+        Me.Name = "Main"
         Me.Text = "WeatherDataDownloader"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -139,5 +163,7 @@ Partial Class Main
     Friend WithEvents D6 As System.Windows.Forms.Label
     Friend WithEvents D7 As System.Windows.Forms.Label
     Friend WithEvents D8 As System.Windows.Forms.Label
+    Friend WithEvents D9 As System.Windows.Forms.Label
+    Friend WithEvents D10 As System.Windows.Forms.Label
 
 End Class
