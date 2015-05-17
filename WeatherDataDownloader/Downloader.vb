@@ -33,6 +33,14 @@ Partial Class Main
         Me.DS(D) = 1
         Call PreRefreshState()
         If Dir(Application.StartupPath + "\日本氣象廳天氣圖", vbDirectory) = "" Then MkDir(Application.StartupPath + "\日本氣象廳天氣圖")
+
+        ''lastest data part
+        DownloadFile(True, "http://www.jma.go.jp/jp/metcht/pdf/kosou/aupq35_00.pdf", Application.StartupPath + "\日本氣象廳天氣圖", "aupq35_00_download_at_" + DateString + "_" + Time.Substring(0, 2) + "-" + Time.Substring(2, 2) + ".pdf")
+        DownloadFile(True, "http://www.jma.go.jp/jp/metcht/pdf/kosou/aupq35_12.pdf", Application.StartupPath + "\日本氣象廳天氣圖", "aupq35_12_download_at_" + DateString + "_" + Time.Substring(0, 2) + "-" + Time.Substring(2, 2) + ".pdf")
+        DownloadFile(True, "http://www.jma.go.jp/jp/metcht/pdf/kosou/aupq78_00.pdf", Application.StartupPath + "\日本氣象廳天氣圖", "aupq78_00_download_at_" + DateString + "_" + Time.Substring(0, 2) + "-" + Time.Substring(2, 2) + ".pdf")
+        DownloadFile(True, "http://www.jma.go.jp/jp/metcht/pdf/kosou/aupq78_12.pdf", Application.StartupPath + "\日本氣象廳天氣圖", "aupq78_12_download_at_" + DateString + "_" + Time.Substring(0, 2) + "-" + Time.Substring(2, 2) + ".pdf")
+
+        ''historyical data part
         'today - prevent download last year data
         TimeForName = Format(Now.AddDays(+0), "MMdd") ''0708 = 7/8
         Checkhours = Format(Now.AddHours(-5), "MMdd")  ''japan time = 03
@@ -68,6 +76,7 @@ Partial Class Main
             DownloadFile(False, "http://www.hbc.jp/tecweather/archive/pdf/AUPQ35_" + TimeForName.Substring(4, 4) + "09.pdf", Application.StartupPath + "\日本氣象廳天氣圖", "AUPQ35_" + TimeForName.Substring(4, 4) + "09.pdf")
         Next
         Me.DS(D) = 2
+        Call RepeatFileRemover.RepeatFileRemoverMain(Application.StartupPath + "\日本氣象廳天氣圖\")
         Call PreRefreshState()
     End Sub
 
