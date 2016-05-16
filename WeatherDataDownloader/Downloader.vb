@@ -114,18 +114,18 @@ Partial Class Main
 
     Private Sub CWB_Radar()
         '雷達回波圖_D4
-        'http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024/2014-04-20_1148.2MOS0.jpg
+        'http://www.cwb.gov.tw/V7/observe/radar/Data/HD_Radar/CV1_3600_201605161950.jpg
         Dim Min As String
         Me.D = 4
         Me.DS(D) = 1
         Call PreRefreshState()
         If Dir(Application.StartupPath + "\雷達回波圖", vbDirectory) = "" Then MkDir(Application.StartupPath + "\雷達回波圖")
         For i = 0 To Me.Period(D)
-            TimeForName = Format(Now.AddHours(-1 * i), "yyyy-MM-dd_HH") ''2014-07-08_23
-            For j = 0 To 54 Step Me.Radar_density
+            TimeForName = Format(Now.AddHours(-1 * i), "yyyyMMddHH")
+            For j = 0 To 50 Step Me.Radar_density
                 Min = j.ToString
                 If Min.Length = 1 Then Min = "0" + Min
-                DownloadFile(True, "http://www.cwb.gov.tw/V7/observe/radar/Data/MOS2_1024/" + TimeForName + Min + ".2MOS0.jpg", Application.StartupPath + "\雷達回波圖", TimeForName + Min + ".2MOS0.jpg")
+                DownloadFile(True, "http://www.cwb.gov.tw/V7/observe/radar/Data/HD_Radar/CV1_3600_" + TimeForName + Min + ".jpg", Application.StartupPath + "\雷達回波圖", TimeForName + Min + ".2MOS0.jpg")
             Next
         Next
         Me.DS(D) = 2
